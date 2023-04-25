@@ -14,15 +14,16 @@ for item in range(0,450,50):
             'Connection': 'keep-alive',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
       }
-      dire = os.path.exists("../image")
+      dire = os.path.exists("./image")
       if dire == True:
             pass
       else:
-            os.mkdir("../image")
+            os.mkdir("./image")
       response = requests.get(url=url,headers=header)
       response.encoding = "utf-8"
       response_test = response.text
       re_cm = re.compile(r'<ul class="threadlist_media.*?bpic="(?P<url>.*?)"')
+
       resp = re_cm.finditer(response_test, re.S)
       for i in resp:
             download_url = i.group("url").strip()
